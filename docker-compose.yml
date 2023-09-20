@@ -11,7 +11,9 @@ services:
       MYSQL_PASSWORD: ${MYSQL_DEV_PASSWORD}
     ports:
       - "${MYSQL_DEV_PORT}:3306"
-  
+    volumes:
+      - mysql_dev_data:/var/lib/mysql
+
   mysql_testing:
     image: mysql:5.7
     container_name: mysql_testing
@@ -22,6 +24,8 @@ services:
       MYSQL_PASSWORD: ${MYSQL_TESTING_PASSWORD}
     ports:
       - "${MYSQL_TESTING_PORT}:3306"
+    volumes:
+      - mysql_testing_data:/var/lib/mysql
 
   mysql_prod:
     image: mysql:5.7
@@ -33,4 +37,16 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PROD_PASSWORD}
     ports:
       - "${MYSQL_PROD_PORT}:3306"
+    volumes:
+      - mysql_prod_data:/var/lib/mysql
 
+  adminer:
+    image: adminer
+    container_name: adminer
+    ports:
+      - "${ADMINER_PORT}:8080"
+
+volumes:
+  mysql_dev_data:
+  mysql_testing_data:
+  mysql_prod_data:
