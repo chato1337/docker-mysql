@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  mysql_dev:
+    image: mysql:5.7
+    container_name: mysql_dev
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_DEV_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DEV_DATABASE}
+      MYSQL_USER: ${MYSQL_DEV_USER}
+      MYSQL_PASSWORD: ${MYSQL_DEV_PASSWORD}
+    ports:
+      - "${MYSQL_DEV_PORT}:3306"
+  
+  mysql_testing:
+    image: mysql:5.7
+    container_name: mysql_testing
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_TESTING_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_TESTING_DATABASE}
+      MYSQL_USER: ${MYSQL_TESTING_USER}
+      MYSQL_PASSWORD: ${MYSQL_TESTING_PASSWORD}
+    ports:
+      - "${MYSQL_TESTING_PORT}:3306"
+
+  mysql_prod:
+    image: mysql:5.7
+    container_name: mysql_prod
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PROD_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_PROD_DATABASE}
+      MYSQL_USER: ${MYSQL_PROD_USER}
+      MYSQL_PASSWORD: ${MYSQL_PROD_PASSWORD}
+    ports:
+      - "${MYSQL_PROD_PORT}:3306"
+
